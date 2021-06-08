@@ -170,7 +170,7 @@ extrairRegistro.b3_futuro <- function(output = "last") {
   return(df)
 }
 
-extrairDic.b3_a_vista <- function() {
+extrairDic.b3_futuro <- function() {
   
   r <- extrairRegistro.b3_futuro("last")
   
@@ -180,6 +180,24 @@ extrairDic.b3_a_vista <- function() {
 extrairConsenso.b3_futuro <- function() {
   
   return(NULL)
+  
+}
+
+extrairData.b3_futuro <- function(output) {
+  
+  if (output %in% c("last", "all")) {
+    
+    extrairRegistro.b3_futuro(output)
+    
+  } else if (output == "dic") {
+    
+    extrairDic.b3_futuro()
+    
+  } else if (output == "last_date") {
+    
+    extrairUltAtualizacao.b3_futuro()
+    
+  }
   
 }
 
@@ -275,6 +293,24 @@ extrairDic.b3_a_vista <- function() {
 extrairConsenso.b3_a_vista <- function() {
   
   return(NULL)
+  
+}
+
+extrairData.b3_a_vista <- function(output) {
+  
+  if (output %in% c("last", "all")) {
+    
+    extrairRegistro.b3_a_vista(output)
+    
+  } else if (output == "dic") {
+    
+    extrairDic.b3_a_vista()
+    
+  } else if (output == "last_date") {
+    
+    extrairUltAtualizacao.b3_a_vista()
+    
+  }
   
 }
 
@@ -383,5 +419,23 @@ extrairDic.b3_open_interest <- function() {
 extrairConsenso.b3_open_interest <- function() {
   
   return(NULL)
+  
+}
+
+extrairData.b3_open_interest <- function(output) {
+  
+  if (output %in% c("last", "all")) {
+    
+    extrairRegistro.b3_open_interest(output)
+    
+  } else if (output == "dic") {
+    
+    extrairDic.b3_open_interest()
+    
+  } else if (output == "last_date") {
+    
+    extrairUltAtualizacao.b3_open_interest()
+    
+  }
   
 }

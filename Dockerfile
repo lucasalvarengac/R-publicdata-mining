@@ -2,7 +2,8 @@
 FROM r-base
 
 # install linux packages needed to run plumber
-RUN apt-get update && apt-get install -y libssl-dev libxml2-dev libcurl4-openssl-dev \
+RUN apt-get update && \
+  apt-get install -y libssl-dev libxml2-dev libcurl4-openssl-dev \
   libsodium-dev libmariadb-dev build-essential libmagick++-dev \
   libfreetype6-dev
 
