@@ -1,6 +1,3 @@
-source("R/connection_functions.R", encoding = "UTF-8")
-source("R/funcoes_banco.R", encoding = "UTF-8")
-
 extrairUltRegistro.tesouro_leiloes <- function() {
   
   con <- createConnectionMongoMoverDB("CONTRATOS_SWAP", "leiloes")

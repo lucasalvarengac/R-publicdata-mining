@@ -315,12 +315,12 @@ extrairData.b3_a_vista <- function(output) {
 }
 
 # b3 open interest
-# 
+
 extrairUltAtualizacao.b3_open_interest <- function() {
   
   con <- createConnectionMongoMoverDB("openinterest", "openinterest")
   
-  r <- con$find('{}', fields = '{"date":1, "_id":0}')
+  r <- con$find('{}', fields = '{"date":1, "_id":0}', sort = '{"date":-1}', limit = 1)
   
   r$date <- as.POSIXct(r$date + 10800)
   
@@ -435,6 +435,103 @@ extrairData.b3_open_interest <- function(output) {
   } else if (output == "last_date") {
     
     extrairUltAtualizacao.b3_open_interest()
+    
+  }
+  
+}
+
+# b3 opcoes em aberto
+
+extrairUltAtualizacao.b3_opcoes <- function() {
+  
+  con <- createConnectionMongoMoverDB("options", "options")
+  
+  r <- con$find('{}', fields = '{"date":1, "_id":0}', sort = '{"date":-1}', limit = 1)
+  
+  r$date <- as.POSIXct(r$date + 10800)
+  
+  return(max(r$date))
+}
+
+extrairRegistro.b3_opcoes <- function(output = "all") { 
+  
+  con <- createConnectionMongoMoverDB("options", "options")
+  
+  if (output == "all") {
+    
+    pipeline <- paste0(
+      '
+        [
+            {
+                "$unwind": {
+                    "path": "$items", 
+                    "includeArrayIndex": "opcoes", 
+                }
+            }
+        ]    
+      '
+    )
+  } else {
+    
+    dt_filter <- extrairUltAtualizacao.b3_opcoes()
+    
+    d <- as.integer(as.POSIXct(strptime(as.character(dt_filter),"%Y-%m-%d"))) * 1000
+    
+    
+    # r <- con$find(paste0('{"date":{"$gte": { "$date" : { "$numberLong" : "', d, '" } } } }'))
+    
+    pipeline <- paste0(
+      '
+        [
+            {
+                "$sort": {
+                    "date": -1
+                }
+            }, {
+                "$limit": 1
+            }, {
+                "$unwind": {
+                    "path": "$items", 
+                    "includeArrayIndex": "opcoes"
+                }
+            }
+        ]
+      '
+    )
+    
+  }
+  
+  tictoc::tic()
+  r <- con$aggregate(pipeline)
+  tictoc::toc()
+  
+  r_final <- bind_rows(r$items) %>% 
+    bind_cols(select(r, -items)) 
+  
+  return(r_final)
+}
+
+extrairDic.b3_opcoes <- function() {
+  
+  r <- extrairRegistro.b3_opcoes("last")
+  
+  distinct(r, ser, nmEmp, espPap, date)
+  
+}
+
+extrairData.b3_opcoes <- function(output) {
+  
+  if (output %in% c("last", "all")) {
+    
+    extrairRegistro.b3_opcoes(output)
+    
+  } else if (output == "dic") {
+    
+    extrairDic.b3_opcoes()
+    
+  } else if (output == "last_date") {
+    
+    extrairUltAtualizacao.b3_opcoes()
     
   }
   

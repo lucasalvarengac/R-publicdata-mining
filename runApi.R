@@ -1,6 +1,6 @@
-setwd("~/Documents/TCDataMining/")
+# setwd("~/Documents/TCDataMining/")
 
-source("R/config.R", encoding = "UTF-8")
+source("R/config.R", encoding = "UTF-8", local = TRUE)
 
 pl <- plumb("mining/plumber.R")
 

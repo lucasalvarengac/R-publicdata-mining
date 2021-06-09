@@ -91,7 +91,7 @@ extrairRegistro.sidra_pmea <- function(output) {
   
 }
 
-extrairUltRegistro.sidra_pmea <- function(output) {
+extrairUltRegistro.sidra_pmea <- function() {
   
   df <- extractDfSidra(
     x = "https://apisidra.ibge.gov.br/values/t/3417/n1/all/v/all/p/last/c11046/all/d/v1186%201,v1190%201"
@@ -101,7 +101,7 @@ extrairUltRegistro.sidra_pmea <- function(output) {
   
 }
 
-extrairDic.sidra_pmea <- function(output) {
+extrairDic.sidra_pmea <- function() {
   
   df <- extractDfSidra(
     x = "https://apisidra.ibge.gov.br/values/t/3417/n1/all/v/all/p/all/c11046/all/d/v1186%201,v1190%201"
@@ -144,7 +144,7 @@ extrairRegistro.sidra_ipca15 <- function(output) {
   
 }
 
-extrairDic.sidra_ipca15 <- function(output) {
+extrairDic.sidra_ipca15 <- function() {
   
   df <- extractDfSidra(
     x = paste0("https://apisidra.ibge.gov.br/values/t/3065/n1/all/v/all/p/all/d/v355%202,v356%202,v1117%2013,v1118%202,v1119%202,v1120%202")
@@ -157,7 +157,7 @@ extrairDic.sidra_ipca15 <- function(output) {
   
 }
 
-extrairUltRegistro.sidra_ipca15 <- function(output) {
+extrairUltRegistro.sidra_ipca15 <- function() {
   
   df <- extractDfSidra(
     x = paste0("https://apisidra.ibge.gov.br/values/t/3065/n1/all/v/all/p/last/d/v355%202,v356%202,v1117%2013,v1118%202,v1119%202,v1120%202")
@@ -197,11 +197,9 @@ extrairRegistro.sidra_pnadc_desemprego <- function(output) {
   
 }
 
-extrairRegistro.sidra_pnadc_desemprego <- function(output) {
+extrairDic.sidra_pnadc_desemprego <- function() {
   
-  df <- extractDfSidra(
-    x = paste0("https://apisidra.ibge.gov.br/values/t/1616/n1/all/v/4092/p/all/c1965/40310")
-  )
+  df <- extrairRegistro.sidra_pnadc_desemprego("all")
   
   df <- df %>% 
     distinct(variavel, date)
@@ -210,7 +208,7 @@ extrairRegistro.sidra_pnadc_desemprego <- function(output) {
   
 }
 
-extrairUltRegistro.sidra_pnadc_desemprego <- function(output) {
+extrairUltRegistro.sidra_pnadc_desemprego <- function() {
   
   df <- extractDfSidra(
     x = paste0("https://apisidra.ibge.gov.br/values/t/1616/n1/all/v/4092/p/last/c1965/40310")
@@ -250,7 +248,7 @@ extrairRegistro.sidra_pnadc_mensal_emprego <- function(output) {
   
 }
 
-extrairUltRegistro.sidra_pnadc_mensal_emprego <- function(output) {
+extrairUltRegistro.sidra_pnadc_mensal_emprego <- function() {
   
   df <- extractDfSidra(
     x = paste0("https://apisidra.ibge.gov.br/values/t/3918/n1/all/v/all/p/last/c12027/31295/d/v4091%201,v8430%201,v8435%201")
@@ -260,7 +258,7 @@ extrairUltRegistro.sidra_pnadc_mensal_emprego <- function(output) {
   
 }
 
-extrairDic.sidra_pnadc_mensal_emprego <- function(output) {
+extrairDic.sidra_pnadc_mensal_emprego <- function() {
   
   df <- extractDfSidra(
     x = paste0("https://apisidra.ibge.gov.br/values/t/3918/n1/all/v/all/p/all/c12027/31295/d/v4091%201,v8430%201,v8435%201")
@@ -303,7 +301,7 @@ extrairRegistro.sidra_pib <- function(output) {
   
 }
 
-extrairUltRegistro.sidra_pib <- function(output) {
+extrairUltRegistro.sidra_pib <- function() {
   
   df <- extractDfSidra(
     x = paste0("https://apisidra.ibge.gov.br/values/t/1846/n1/all/v/all/p/last/c11255/all/d/v585%200")
@@ -313,7 +311,7 @@ extrairUltRegistro.sidra_pib <- function(output) {
   
 }
 
-extrairDic.sidra_pib <- function(output) {
+extrairDic.sidra_pib <- function() {
   
   df <- extractDfSidra(
     x = paste0("https://apisidra.ibge.gov.br/values/t/1846/n1/all/v/all/p/all/c11255/all/d/v585%200")
@@ -322,7 +320,7 @@ extrairDic.sidra_pib <- function(output) {
   df <- df %>% 
     distinct(variavel, setores_e_subsetores, date)
   
-  return(unique(df$date))
+  return(df)
   
 }
 
@@ -356,7 +354,7 @@ extrairRegistro.sidra_pmi <- function(output) {
   
 }
 
-extrairUltRegistro.sidra_pmi <- function(output) {
+extrairUltRegistro.sidra_pmi <- function() {
   
   df <- extractDfSidra(
     x = paste0("https://apisidra.ibge.gov.br/values/t/3651/n1/all/v/all/p/last/c543/129278,129283,129300,129311/d/v3134%201,v3135%201,v3136%201,v3137%201,v3138%201,v3139%201,v3140%201,v3141%201,v4139%201")
@@ -366,7 +364,7 @@ extrairUltRegistro.sidra_pmi <- function(output) {
   
 }
 
-extrairDic.sidra_pmi <- function(output) {
+extrairDic.sidra_pmi <- function() {
   
   df <- extractDfSidra(
     x = paste0("https://apisidra.ibge.gov.br/values/t/3651/n1/all/v/all/p/all/c543/129278,129283,129300,129311/d/v3134%201,v3135%201,v3136%201,v3137%201,v3138%201,v3139%201,v3140%201,v3141%201,v4139%201")
@@ -409,7 +407,7 @@ extrairRegistro.sidra_ipca <- function(output) {
   
 }
 
-extrairUltRegistro.sidra_ipca <- function(output) {
+extrairUltRegistro.sidra_ipca <- function() {
   
   df <- extractDfSidra(
     x = paste0("https://apisidra.ibge.gov.br/values/t/6691/n1/all/v/all/p/last/d/v63%202,v2266%2013,v9798%202,v9800%202")
@@ -419,7 +417,7 @@ extrairUltRegistro.sidra_ipca <- function(output) {
   
 }
 
-extrairRegistro.sidra_ipca <- function(output) {
+extrairDic.sidra_ipca <- function() {
   
   df <- extractDfSidra(
     x = paste0("https://apisidra.ibge.gov.br/values/t/6691/n1/all/v/all/p/all/d/v63%202,v2266%2013,v9798%202,v9800%202")

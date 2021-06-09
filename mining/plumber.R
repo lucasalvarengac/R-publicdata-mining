@@ -44,6 +44,17 @@ function(output) {
     
 }
 
+#* Base de dados da B3 para posição em opcoes
+#* @tag B3
+#* @serializer json
+#* @param output selecione o tipo de output desejado (last, all, last_date, dic)
+#* @get /b3/opcoes/
+function(output) {
+  
+  extrairData.b3_opcoes(output)
+    
+}
+
 #* @apiTag Sidra origem de dados do IBGE
 
 #* Base Sidra - Pesquisa mensal de emprego (PME)
@@ -135,6 +146,7 @@ function(output) {
 }
 
 #* @apiTag Tesouro dados do tesouro
+
 #* @tag Tesouro
 #* @serializer json
 #* @param output selecione o tipo de output desejado (last, all, last_date, dic)
@@ -146,6 +158,7 @@ function(output) {
 }
 
 #* @apiTag Anfavea produção de veículos
+
 #* @tag Anfavea
 #* @serializer json
 #* @param output selecione o tipo de output desejado (last, all, last_date, dic)
