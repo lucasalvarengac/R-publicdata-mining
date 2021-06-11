@@ -506,8 +506,24 @@ extrairRegistro.b3_opcoes <- function(output = "all") {
   tictoc::toc()
   
   r_final <- bind_rows(r$items) %>% 
-    bind_cols(select(r, -items)) 
-  
+    bind_cols(select(r, -items)) %>% 
+    select(
+      serie = ser
+      ,preco_strike = prEx
+      ,nome_empresa = nmEmp
+      ,posicao_coberta = poCob
+      ,posicao_descoberta = posDe
+      ,titulares = qtdClTit
+      ,posicao_travada = posTr
+      ,posicao_total = posTo
+      ,qtd_lancadores = qtdClLan
+      ,dt_vencimento = dtVen
+      ,tp_opcao = tMerc
+      ,mercadoria = mer
+      ,tp_ativo = espPap
+      ,date
+    )
+    
   return(r_final)
 }
 
@@ -515,7 +531,7 @@ extrairDic.b3_opcoes <- function() {
   
   r <- extrairRegistro.b3_opcoes("last")
   
-  distinct(r, ser, nmEmp, espPap, date)
+  distinct(r, serie, nome_empresa, tp_ativo)
   
 }
 
