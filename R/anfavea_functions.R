@@ -1,6 +1,3 @@
-library(httr)
-library(rvest)
-
 extrairRegistro.anfavea_prod_veiculos <- function(output) {
   
   if (output == "last") {
@@ -63,7 +60,7 @@ extrairUltRegistro.anfavea_prod_veiculos <- function() {
   
   df <- extrairRegistro.anfavea_prod_veiculos("last")
   
-  return(unique(df$date))
+  return(unique(strftime(as.Date(df$date), format = "%Y-%m-%d %H:%M:%S")))
   
 }
 

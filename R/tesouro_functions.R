@@ -11,7 +11,7 @@ extrairUltRegistro.tesouro_leiloes <- function() {
   
   con$disconnect()
     
-  return(r$date)
+  return(strftime(max(as.Date(r$date)), format = "%Y-%m-%d %H:%M:%S"))
 }
 
 extrairRegistro.tesouro_leiloes <- function(output) {

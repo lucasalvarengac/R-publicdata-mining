@@ -18,7 +18,7 @@ extrairUltAtualizacao.b3_futuro <- function() {
     
   if (length(data_text) == 0) return(NULL)
   
-  return(data_text)
+  return(unique(strftime(as.Date(data_text), format = "%Y-%m-%d %H:%M:%S")))
   
 }
 
@@ -218,7 +218,7 @@ extrairUltAtualizacao.b3_a_vista <- function() {
   
   ult_atualizacao <- as.Date(max(r$date))
   
-  return(ult_atualizacao)
+  return(max(strftime(ult_atualizacao, format = "%Y-%m-%d %H:%M:%S")))
   
 }
 
@@ -324,7 +324,7 @@ extrairUltAtualizacao.b3_open_interest <- function() {
   
   r$date <- as.POSIXct(r$date + 10800)
   
-  return(max(r$date))
+  return(strftime(max(r$date), format = "%Y-%m-%d %H:%M:%S"))
 }
 
 extrairRegistro.b3_open_interest <- function(output = "all") { 
@@ -450,7 +450,7 @@ extrairUltAtualizacao.b3_opcoes <- function() {
   
   r$date <- as.POSIXct(r$date + 10800)
   
-  return(max(r$date))
+  return(strftime(max(r$date), format = "%Y-%m-%d %H:%M:%S"))
 }
 
 extrairRegistro.b3_opcoes <- function(output = "all") { 

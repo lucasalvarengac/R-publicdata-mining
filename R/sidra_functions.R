@@ -57,7 +57,7 @@ extrairUltRegistro.sidra_pme <- function() {
     x = paste0("https://apisidra.ibge.gov.br/values/t/3416/n1/all/v/all/p/last/c11046/all/d/v564%201,v565%201")
   )
   
-  return(unique(df$date))
+  return(strftime(max(as.Date(r$date)), format = "%Y-%m-%d %H:%M:%S"))
   
 }
 
@@ -97,7 +97,7 @@ extrairUltRegistro.sidra_pmea <- function() {
     x = "https://apisidra.ibge.gov.br/values/t/3417/n1/all/v/all/p/last/c11046/all/d/v1186%201,v1190%201"
   )
   
-  return(unique(df$date))
+  return(strftime(max(as.Date(r$date)), format = "%Y-%m-%d %H:%M:%S"))
   
 }
 
@@ -163,7 +163,7 @@ extrairUltRegistro.sidra_ipca15 <- function() {
     x = paste0("https://apisidra.ibge.gov.br/values/t/3065/n1/all/v/all/p/last/d/v355%202,v356%202,v1117%2013,v1118%202,v1119%202,v1120%202")
   )
   
-  return(unique(df$date))
+  return(strftime(max(as.Date(r$date)), format = "%Y-%m-%d %H:%M:%S"))
   
 }
 
@@ -214,7 +214,7 @@ extrairUltRegistro.sidra_pnadc_desemprego <- function() {
     x = paste0("https://apisidra.ibge.gov.br/values/t/1616/n1/all/v/4092/p/last/c1965/40310")
   )
   
-  return(unique(df$date))
+  return(strftime(max(as.Date(r$date)), format = "%Y-%m-%d %H:%M:%S"))
   
 }
 
@@ -254,7 +254,7 @@ extrairUltRegistro.sidra_pnadc_mensal_emprego <- function() {
     x = paste0("https://apisidra.ibge.gov.br/values/t/3918/n1/all/v/all/p/last/c12027/31295/d/v4091%201,v8430%201,v8435%201")
   )
   
-  return(unique(df$date))
+  return(strftime(max(as.Date(r$date)), format = "%Y-%m-%d %H:%M:%S"))
   
 }
 
@@ -307,7 +307,7 @@ extrairUltRegistro.sidra_pib <- function() {
     x = paste0("https://apisidra.ibge.gov.br/values/t/1846/n1/all/v/all/p/last/c11255/all/d/v585%200")
   )
   
-  return(unique(df$date))
+  return(strftime(max(as.Date(r$date)), format = "%Y-%m-%d %H:%M:%S"))
   
 }
 
@@ -360,7 +360,7 @@ extrairUltRegistro.sidra_pmi <- function() {
     x = paste0("https://apisidra.ibge.gov.br/values/t/3651/n1/all/v/all/p/last/c543/129278,129283,129300,129311/d/v3134%201,v3135%201,v3136%201,v3137%201,v3138%201,v3139%201,v3140%201,v3141%201,v4139%201")
   )
   
-  return(unique(df$date))
+  return(strftime(max(as.Date(r$date)), format = "%Y-%m-%d %H:%M:%S"))
   
 }
 
@@ -413,7 +413,7 @@ extrairUltRegistro.sidra_ipca <- function() {
     x = paste0("https://apisidra.ibge.gov.br/values/t/6691/n1/all/v/all/p/last/d/v63%202,v2266%2013,v9798%202,v9800%202")
   )
   
-  return(unique(df$date))
+  return(strftime(max(as.Date(r$date)), format = "%Y-%m-%d %H:%M:%S"))
   
 }
 
